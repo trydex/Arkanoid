@@ -10,7 +10,8 @@
 <canvas id="myCanvas" width="480" height="320"></canvas>
 
 <script>
-    var canvas = document.getElementById("myCanvas");
+
+var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 var ballRadius = 10;
 var x = canvas.width/2;
@@ -84,9 +85,10 @@ function draw() {
         dx = -dx;
     }
 
-    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+    if(y + dy > canvas.height-ballRadius || y + dy < ballRadius || (x > paddleX && x < paddleX + paddleWidth && y + dy >= paddleY + paddleHeight)) {
+        console.log(`Ball: x:${x} y:${y} Paddle: x:${paddleX} y:${paddleY}`);
         dy = -dy;
-    }
+    }  
     
     if(rightPressed && paddleX < canvas.width-paddleWidth) {
         paddleX += 7;
